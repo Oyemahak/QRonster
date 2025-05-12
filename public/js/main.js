@@ -23,8 +23,8 @@ const statusMessages = [
   
   // Initialize QR Code
   const qrCode = new QRCodeStyling({
-    width: 300,
-    height: 300,
+    width: 240,
+    height: 240,
     data: "",
     dotsOptions: {
       type: "rounded",
