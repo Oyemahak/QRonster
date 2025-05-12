@@ -1,168 +1,193 @@
-// Array of funny/roasting messages
-const loadingMessages = [
-    "Generating your QR code... unlike your ex, I won't ghost you.",
-    "Working on it... faster than your internet connection, hopefully.",
-    "Creating magic... or at least a scannable square.",
-    "Processing... this would be faster if you bought me coffee.",
-    "Hold tight... unlike your CSS, I won't break.",
-    "Almost there... just like your deadlines, I'm approaching fast.",
-    "QR code incoming... with fewer bugs than your last project.",
-    "Compiling awesomeness... just like your code (but actually working).",
-    "Reticulating splines... okay, not really, but it sounds cool.",
-    "Doing the thing... that thing you pay developers to do."
+// Status messages
+const statusMessages = [
+    "Your QR code is ready!",
+    "QR generated successfully!",
+    "Looking sharp! Ready to download",
+    "Professional QR code created",
+    "Scan-worthy QR code generated"
   ];
   
-  const randomMessages = [
-    "Why did the web developer go broke? Because he used up all his cache!",
-    "UX Designer to QR Code: 'You're so square!' QR Code: 'At least I work on all devices.'",
-    "This QR code has better responsiveness than your last website.",
-    "If this QR code doesn't work, try turning it off and on again.",
-    "I generate QR codes better than you generate excuses for not writing tests.",
-    "Your logo in the middle makes this QR code look fancy, unlike your code.",
-    "QR codes: The only squares developers actually like.",
-    "Warning: May contain traces of actual usefulness.",
-    "This tool is more reliable than your production environment.",
-    "Made with 100% organic, free-range pixels."
+  // Roasting messages
+  const roastMessages = [
+    "This QR code has better responsiveness than your first website",
+    "Your code might have bugs, but this QR won't",
+    "Even your grandma could scan this",
+    "This QR won't ask you to update dependencies",
+    "More reliable than your internet connection",
+    "No JavaScript errors here (unlike your code)",
+    "This QR works better than your last relationship",
+    "Your code may fail, but this QR won't",
+    "This QR has better uptime than your side projects",
+    "Scan me like you scan Tinder profiles"
   ];
   
-  const tipMessages = [
-    "Make your QR code scannable, unlike your handwriting.",
-    "A good logo in the center is like a good UX designer - it makes everything better.",
-    "If your QR code doesn't work, it's probably user error. Just kidding... maybe.",
-    "This tool is free, unlike your therapist after seeing your design choices.",
-    "Pro tip: Test your QR code before printing 10,000 copies.",
-    "Your QR code should work better than your last MVP.",
-    "Remember: QR codes are like APIs - they should just work.",
-    "This QR code has better uptime than your side project.",
-    "No QR codes were harmed in the making of this website.",
-    "QR codes: Because typing URLs is so 2010."
-  ];
-  
-  // DOM elements
-  const urlInput = document.getElementById('url-input');
-  const logoUpload = document.getElementById('logo-upload');
-  const qrColor = document.getElementById('qr-color');
-  const bgColor = document.getElementById('bg-color');
-  const generateBtn = document.getElementById('generate-btn');
-  const downloadBtn = document.getElementById('download-btn');
-  const qrCodeElement = document.getElementById('qr-code');
-  const loader = document.getElementById('loader');
-  const loaderMessage = document.getElementById('loader-message');
-  const randomMessageElement = document.getElementById('random-message');
-  const tipsList = document.querySelector('.tips-list');
-  
-  // Initialize QR code
-  let qrCode = new QRCodeStyling({
+  // Initialize QR Code
+  const qrCode = new QRCodeStyling({
     width: 300,
     height: 300,
-    data: "https://example.com",
-    image: "",
+    data: "",
     dotsOptions: {
       type: "rounded",
-      color: qrColor.value
+      color: "#000000"
     },
     backgroundOptions: {
-      color: bgColor.value
+      color: "#ffffff"
     },
     imageOptions: {
       crossOrigin: "anonymous",
-      margin: 4,
+      margin: 8,
       imageSize: 0.4
     }
   });
   
-  // Append QR code to DOM
-  qrCode.append(document.getElementById('qr-code'));
+  // DOM Elements
+  const urlInput = document.getElementById('url-input');
+  const logoUpload = document.getElementById('logo-upload');
+  const uploadPreview = document.getElementById('upload-preview');
+  const qrColorInput = document.getElementById('qr-color');
+  const bgColorInput = document.getElementById('bg-color');
+  const styleButtons = document.querySelectorAll('.style-btn');
+  const generateBtn = document.getElementById('generate-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const newBtn = document.getElementById('new-btn');
+  const loader = document.getElementById('loader');
+  const qrContainer = document.getElementById('qr-container');
+  const qrPlaceholder = document.querySelector('.qr-placeholder');
+  const roastMessage = document.getElementById('roast-message');
   
-  // Update random messages periodically
-  function updateRandomMessage() {
-    const randomIndex = Math.floor(Math.random() * randomMessages.length);
-    randomMessageElement.textContent = randomMessages[randomIndex];
-    
-    // Update tips
-    tipsList.innerHTML = '';
-    const shuffledTips = [...tipMessages].sort(() => 0.5 - Math.random()).slice(0, 4);
-    shuffledTips.forEach(tip => {
-      const li = document.createElement('li');
-      li.textContent = tip;
-      tipsList.appendChild(li);
+  // Current settings
+  let currentSettings = {
+    style: "rounded",
+    qrColor: "#000000",
+    bgColor: "#ffffff",
+    logo: null
+  };
+  
+  // Update color displays
+  qrColorInput.addEventListener('input', (e) => {
+    currentSettings.qrColor = e.target.value;
+    qrColorInput.nextElementSibling.textContent = e.target.value.toUpperCase();
+  });
+  
+  bgColorInput.addEventListener('input', (e) => {
+    currentSettings.bgColor = e.target.value;
+    bgColorInput.nextElementSibling.textContent = e.target.value.toUpperCase();
+  });
+  
+  // Style button selection
+  styleButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      styleButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      currentSettings.style = button.dataset.style;
     });
-  }
+  });
   
-  // Show loading state
-  function showLoading() {
-    const randomIndex = Math.floor(Math.random() * loadingMessages.length);
-    loaderMessage.textContent = loadingMessages[randomIndex];
-    loader.style.display = 'block';
-    qrCodeElement.style.display = 'none';
-    downloadBtn.disabled = true;
-  }
+  // Logo upload preview
+  logoUpload.addEventListener('change', (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        uploadPreview.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = event.target.result;
+        img.alt = "Logo preview";
+        uploadPreview.appendChild(img);
+        currentSettings.logo = event.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  });
   
-  // Hide loading state
-  function hideLoading() {
-    loader.style.display = 'none';
-    qrCodeElement.style.display = 'block';
-  }
-  
-  // Generate QR code
-  function generateQRCode() {
+  // Generate QR Code
+  generateBtn.addEventListener('click', () => {
     const url = urlInput.value.trim();
     
     if (!url) {
-      alert("Please enter a valid URL");
+      updateStatus("Please enter a URL first", "error");
+      urlInput.focus();
       return;
     }
-    
-    showLoading();
-    
-    // Get logo if uploaded
-    let logo = '';
-    if (logoUpload.files && logoUpload.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        logo = e.target.result;
-        createQRCode(url, logo);
-      };
-      reader.readAsDataURL(logoUpload.files[0]);
-    } else {
-      createQRCode(url, logo);
-    }
-  }
   
-  // Create QR code with given parameters
-  function createQRCode(url, logo) {
+    // Show loading
+    loader.style.display = 'flex';
+    qrContainer.innerHTML = '';
+    downloadBtn.disabled = true;
+    
+    // Generate after short delay
+    setTimeout(() => {
+      generateQR(url);
+    }, 300);
+  });
+  
+  // Generate QR with current settings
+  function generateQR(url) {
     qrCode.update({
       data: url,
-      image: logo,
+      image: currentSettings.logo,
       dotsOptions: {
-        type: "rounded",
-        color: qrColor.value
+        type: currentSettings.style,
+        color: currentSettings.qrColor
       },
       backgroundOptions: {
-        color: bgColor.value
+        color: currentSettings.bgColor
       }
     });
+  
+    // Append QR code
+    qrCode.append(qrContainer);
+    qrPlaceholder.style.display = 'none';
     
-    // Simulate processing delay
+    // Hide loader and show success
     setTimeout(() => {
-      hideLoading();
+      loader.style.display = 'none';
       downloadBtn.disabled = false;
-      updateRandomMessage();
-    }, 1500);
+      showRandomRoast();
+    }, 800);
   }
   
-  // Download QR code
-  function downloadQRCode() {
-    qrCode.download({
-      name: "qrcode",
-      extension: "png"
+  // Download QR Code
+  downloadBtn.addEventListener('click', () => {
+    qrCode.download({ 
+      name: 'qronster-qr', 
+      extension: 'png' 
     });
+    showRandomRoast();
+  });
+  
+  // New QR button
+  newBtn.addEventListener('click', resetForm);
+  
+  // Reset form
+  function resetForm() {
+    urlInput.value = '';
+    logoUpload.value = '';
+    uploadPreview.innerHTML = '<i class="fas fa-image"></i><span>Select an image file</span>';
+    qrContainer.innerHTML = '';
+    qrPlaceholder.style.display = 'flex';
+    downloadBtn.disabled = true;
+    currentSettings.logo = null;
+    showRandomRoast();
   }
   
-  // Event listeners
-  generateBtn.addEventListener('click', generateQRCode);
-  downloadBtn.addEventListener('click', downloadQRCode);
+  // Show random roast message
+  function showRandomRoast() {
+    const randomIndex = Math.floor(Math.random() * roastMessages.length);
+    roastMessage.style.opacity = 0;
+    
+    setTimeout(() => {
+      roastMessage.textContent = roastMessages[randomIndex];
+      roastMessage.style.opacity = 1;
+    }, 500);
+  }
   
-  // Initialize random messages
-  updateRandomMessage();
-  setInterval(updateRandomMessage, 10000);
+  // Rotate roast messages every 5 seconds
+  function rotateRoasts() {
+    showRandomRoast();
+    setInterval(showRandomRoast, 5000);
+  }
+  
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    rotateRoasts();
+  });

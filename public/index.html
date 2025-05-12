@@ -3,76 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QRonster - QR Code Generator with Attitude</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <title>QRonster | Professional QR Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>QRonster</h1>
-      <p class="tagline">The QR code generator that roasts you while you wait</p>
-      <div class="random-message" id="random-message">
-        "Why did the web developer go broke? Because he used up all his cache!"
+      <div class="header-content">
+        <img src="images/qronster-icon.png" alt="QRonster" class="logo">
+        <div class="header-text">
+          <h1>QRonster</h1>
+          <p class="tagline">Generate professional QR codes instantly</p>
+        </div>
       </div>
     </header>
 
     <main>
-      <div class="generator-container">
-        <div class="input-section">
-          <div class="form-group">
-            <label for="url-input">Enter URL to encode:</label>
-            <input type="url" id="url-input" placeholder="https://example.com" required>
-          </div>
+      <div class="card generator-card">
+        <h2 class="card-title"><i class="fas fa-cog"></i> Generator Settings</h2>
+        
+        <div class="form-group">
+          <label for="url-input">URL to encode</label>
+          <input type="url" id="url-input" placeholder="https://example.com" required>
+        </div>
 
-          <div class="form-group">
-            <label for="logo-upload">Upload your logo (optional):</label>
+        <div class="form-group">
+          <label for="logo-upload">Logo (optional)</label>
+          <div class="file-upload-container">
             <input type="file" id="logo-upload" accept="image/*">
-            <small>For best results, use a square transparent PNG</small>
-          </div>
-
-          <div class="form-group">
-            <label for="qr-color">QR Color:</label>
-            <input type="color" id="qr-color" value="#000000">
-          </div>
-
-          <div class="form-group">
-            <label for="bg-color">Background Color:</label>
-            <input type="color" id="bg-color" value="#ffffff">
-          </div>
-
-          <button id="generate-btn">Generate QR Code</button>
-        </div>
-
-        <div class="result-section">
-          <div class="loader-container" id="loader">
-            <div class="loader"></div>
-            <div class="loader-message" id="loader-message">"Hold on, I'm generating your QR code... unlike your ex, I won't ghost you."</div>
-          </div>
-
-          <div class="qr-preview" id="qr-preview">
-            <div id="qr-code"></div>
-            <button id="download-btn" disabled>Download QR Code</button>
+            <label for="logo-upload" class="file-upload-label">
+              <div class="upload-preview" id="upload-preview">
+                <i class="fas fa-image"></i>
+                <span>Select an image file</span>
+              </div>
+            </label>
           </div>
         </div>
+
+        <div class="form-group">
+          <label>QR Style</label>
+          <div class="style-options">
+            <button class="style-btn active" data-style="rounded">
+              <i class="fas fa-circle"></i> Rounded
+            </button>
+            <button class="style-btn" data-style="square">
+              <i class="fas fa-square"></i> Square
+            </button>
+            <button class="style-btn" data-style="dots">
+              <i class="fas fa-circle-notch"></i> Dots
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qr-color">QR Color</label>
+            <div class="color-input">
+              <input type="color" id="qr-color" value="#000000">
+              <span>#000000</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="bg-color">Background</label>
+            <div class="color-input">
+              <input type="color" id="bg-color" value="#ffffff">
+              <span>#FFFFFF</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="generate-btn" class="primary-btn">
+          <i class="fas fa-bolt"></i> Generate QR Code
+        </button>
       </div>
 
-      <div class="tips-section">
-        <h2>Pro Tips from QRonster</h2>
-        <ul class="tips-list">
-          <li>"Make your QR code scannable, unlike your handwriting."</li>
-          <li>"A good logo in the center is like a good UX designer - it makes everything better."</li>
-          <li>"If your QR code doesn't work, it's probably user error. Just kidding... maybe."</li>
-          <li>"This tool is free, unlike your therapist after seeing your design choices."</li>
-        </ul>
+      <div class="card result-card">
+        <h2 class="card-title"><i class="fas fa-qrcode"></i> QR Code Output</h2>
+        
+        <div class="loader" id="loader">
+          <div class="spinner"></div>
+          <div class="loading-text">Generating your QR code...</div>
+        </div>
+        
+        <div class="qr-container" id="qr-container">
+          <div class="qr-placeholder">
+            <i class="fas fa-qrcode"></i>
+            <p>Your QR code will appear here</p>
+          </div>
+        </div>
+
+        <div id="roast-message" class="roast-message">
+          Your QR code won't ghost you like your ex
+        </div>
+
+        <div class="action-buttons">
+          <button id="download-btn" class="primary-btn" disabled>
+            <i class="fas fa-download"></i> Download PNG
+          </button>
+          <button id="new-btn" class="secondary-btn">
+            <i class="fas fa-redo"></i> Start Over
+          </button>
+        </div>
       </div>
     </main>
 
     <footer>
-      <p>Made with ❤️ and sarcasm by a developer who clearly needs more coffee</p>
-      <p class="roast">"This footer is more useful than most JavaScript frameworks."</p>
+      <p>QRonster generated by Mahak Patel | © 2025 All rights reserved</p>
     </footer>
   </div>
 
