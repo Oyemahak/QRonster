@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QRonster - QR Code Generator with Attitude</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>QRonster</h1>
+      <p class="tagline">The QR code generator that roasts you while you wait</p>
+      <div class="random-message" id="random-message">
+        "Why did the web developer go broke? Because he used up all his cache!"
+      </div>
+    </header>
+
+    <main>
+      <div class="generator-container">
+        <div class="input-section">
+          <div class="form-group">
+            <label for="url-input">Enter URL to encode:</label>
+            <input type="url" id="url-input" placeholder="https://example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="logo-upload">Upload your logo (optional):</label>
+            <input type="file" id="logo-upload" accept="image/*">
+            <small>For best results, use a square transparent PNG</small>
+          </div>
+
+          <div class="form-group">
+            <label for="qr-color">QR Color:</label>
+            <input type="color" id="qr-color" value="#000000">
+          </div>
+
+          <div class="form-group">
+            <label for="bg-color">Background Color:</label>
+            <input type="color" id="bg-color" value="#ffffff">
+          </div>
+
+          <button id="generate-btn">Generate QR Code</button>
+        </div>
+
+        <div class="result-section">
+          <div class="loader-container" id="loader">
+            <div class="loader"></div>
+            <div class="loader-message" id="loader-message">"Hold on, I'm generating your QR code... unlike your ex, I won't ghost you."</div>
+          </div>
+
+          <div class="qr-preview" id="qr-preview">
+            <div id="qr-code"></div>
+            <button id="download-btn" disabled>Download QR Code</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-section">
+        <h2>Pro Tips from QRonster</h2>
+        <ul class="tips-list">
+          <li>"Make your QR code scannable, unlike your handwriting."</li>
+          <li>"A good logo in the center is like a good UX designer - it makes everything better."</li>
+          <li>"If your QR code doesn't work, it's probably user error. Just kidding... maybe."</li>
+          <li>"This tool is free, unlike your therapist after seeing your design choices."</li>
+        </ul>
+      </div>
+    </main>
+
+    <footer>
+      <p>Made with ❤️ and sarcasm by a developer who clearly needs more coffee</p>
+      <p class="roast">"This footer is more useful than most JavaScript frameworks."</p>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

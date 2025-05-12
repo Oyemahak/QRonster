@@ -1,0 +1,224 @@
+:root {
+    --primary-color: #4a6bff;
+    --secondary-color: #ff6b6b;
+    --dark-color: #333;
+    --light-color: #f8f9fa;
+    --border-radius: 12px;
+    --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7ff;
+    color: var(--dark-color);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+  }
+  
+  .random-message {
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.1rem;
+    background: white;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin: 0 auto;
+    max-width: 600px;
+    color: var(--secondary-color);
+    font-weight: 700;
+  }
+  
+  .generator-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+    justify-content: center;
+  }
+  
+  .input-section, .result-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .form-group input[type="url"],
+  .form-group input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+  }
+  
+  .form-group input[type="color"] {
+    width: 60px;
+    height: 40px;
+    padding: 2px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+  }
+  
+  button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  button:hover {
+    background: #3a56d4;
+    transform: translateY(-2px);
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  #qr-code {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 20px;
+    display: none;
+  }
+  
+  .loader-container {
+    text-align: center;
+    padding: 40px 0;
+    display: none;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loader-message {
+    font-family: 'Comic Neue', cursive;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+  }
+  
+  .tips-section {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 40px;
+  }
+  
+  .tips-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .tips-list {
+    list-style-type: none;
+  }
+  
+  .tips-list li {
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    position: relative;
+    padding-left: 60px;
+    font-family: 'Comic Neue', cursive;
+  }
+  
+  .tips-list li:before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--secondary-color);
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    opacity: 0.3;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+  }
+  
+  footer .roast {
+    font-family: 'Comic Neue', cursive;
+    color: var(--secondary-color);
+    margin-top: 10px;
+    font-weight: 700;
+  }
+  
+  @media (max-width: 768px) {
+    .generator-container {
+      flex-direction: column;
+    }
+    
+    .input-section, .result-section {
+      max-width: 100%;
+    }
+  }
