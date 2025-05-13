@@ -1,10 +1,11 @@
 # **QRonster - The "Useless But Useful" QR Generator**
 
-## **📌 Project Pitch for Class Presentation**
+## **🔍 What is QRonster?
 
-**Professor & Class,**
-
-Let me introduce you to **QRonster**—a QR code generator that’s *technically useful* but also *delightfully unnecessary*.
+**QRonster** is a **lightweight**, **no-nonsense** QR code generator with an attitude. It lets you:
+✔ Create custom QR codes (with logos & colors)
+✔ Download instantly (no watermarks, no paywalls)
+✔ Get roasted while you wait (because why not?)
 
 ---
 
@@ -19,7 +20,7 @@ At first glance, QR generators are everywhere. So why make another one? Because:
 So I built **QRonster**:  
 ✅ **No sign-ups**  
 ✅ **No expiring codes**  
-✅ **No nonsense**
+✅ **No nonsense ads**
 
 But is it *completely* useless? **Yes and no.**
 
