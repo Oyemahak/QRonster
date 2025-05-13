@@ -1,4 +1,4 @@
-# 🧟‍♂️ **QRonster - The "Useless But Useful" QR Generator**
+# **QRonster - The "Useless But Useful" QR Generator**
 > _Because the world totally needed another QR code generator._
 
 ---
@@ -105,9 +105,9 @@ Because sometimes:
 
 ---
 
-### 👩‍💻 **Made by Mahak Patel**  
-*Professional Builder of "Useless But Useful" Things™*  
-
-![Funny QR Visual](https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif)
+![Funny QR Visual](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExanZqb3VocTdyOHh5NmR0eWV4bHBtZG9tMnZneW9sYmYyY3lsZWVydyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/t45OFh9kYR5FYHBI9r/giphy.gif)
 
 ---
+
+### 👩‍💻 **Made by Mahak Patel**  
+*Professional Builder of "Useless But Useful" Things™*  
