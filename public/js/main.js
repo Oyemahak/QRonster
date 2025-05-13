@@ -9,9 +9,8 @@ const statusMessages = [
   
   // Roasting messages
   const roastMessages = [
-    "This QR code has better responsiveness than your first website",
     "Your code might have bugs, but this QR won't",
-    "Even your grandma could scan this",
+    "Even your grandma could scan this!",
     "This QR won't ask you to update dependencies",
     "More reliable than your internet connection",
     "No JavaScript errors here (unlike your code)",

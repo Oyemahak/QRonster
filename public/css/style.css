@@ -398,13 +398,13 @@
   
   .roast-message {
     font-size: 16px;
-    color: #d93025;
-    background-color: #fce8e6;
+    color: #FFFFFF;
+    background-color: #000000;
     padding: 16px;
     border-radius: var(--radius);
-    border: 1px solid #f28b82;
+    border: 2px solid #ff0000;
     margin-top: 8px;
-    font-weight: 500;
+    font-weight: 400;
   }
   
   
