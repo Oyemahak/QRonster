@@ -11,13 +11,16 @@ const statusMessages = [
   const roastMessages = [
     "Your code might have bugs, but this QR won't",
     "Even your grandma could scan this!",
-    "This QR won't ask you to update dependencies",
+    "Faster than your last API response",
     "More reliable than your internet connection",
     "No JavaScript errors here (unlike your code)",
     "This QR works better than your last relationship",
     "Your code may fail, but this QR won't",
     "This QR has better uptime than your side projects",
-    "Scan me like you scan Tinder profiles"
+    "Scan me like you scan Tinder profiles",
+    "This QR is more stable than your startup",
+    "No undefined behavior here (unlike your ex)",
+    "No 'just one more fix' needed here"
   ];
   
   // Initialize QR Code
