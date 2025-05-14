@@ -396,16 +396,70 @@
     height: fit-content;
   }
   
-  .roast-message {
-    font-size: 16px;
-    color: #FFFFFF;
-    background-color: #000000;
-    padding: 16px;
-    border-radius: var(--radius);
-    border: 2px solid #ff0000;
-    margin-top: 8px;
-    font-weight: 400;
-  }
+.roast-message {
+  position: relative;
+  font-size: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #ff1493, #ff8c00, #00bfff);
+  padding: 16px 16px;
+  border-radius: 18px;
+  border: 3px double #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+              0 0 40px rgba(255, 20, 147, 0.5),
+              0 0 60px rgba(0, 191, 255, 0.5);
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
+  margin: 20px 0;
+  z-index: 1;
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+/* Glowing animated emoji background */
+.roast-message::before {
+  content: "🤣🔥💀😂😈🤣🔥💀😂";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 0;
+  animation: emojiRain 10s linear infinite;
+  pointer-events: none;
+}
+
+/* Floating top & bottom emoji sprinkles */
+.roast-message::after {
+  position: absolute;
+  bottom: -12px;
+  right: 10px;
+  font-size: 32px;
+  opacity: 0.7;
+  animation: floatBubbles 6s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* Text above background */
+.roast-message > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Animations */
+@keyframes emojiRain {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+@keyframes floatBubbles {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
   
   
   footer {
